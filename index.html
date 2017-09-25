@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Window</title>
+    <link rel="stylesheet" href="../media/css/main.css"/>
+    <script data-main="../media/js/script/mainData" src="../media/js/lib/require.js"></script>
+    <!--<script src="../media/js/lib/knockout-3.4.2.js"></script>-->
+    <!--<script src="../media/js/lib/jquery-1.12.4.js"></script>-->
+    <!--<script src="../media/js/script/model.js"></script>-->
+    <!--<script src="../media/js/script/main.js"></script>-->
+</head>
+<body>
+<div id="header" class="top-header">
+    <h1>机器人管理</h1>
+</div>
+<div id="content" style="height:250px;margin-left:5px">
+    <div class="fix-left">
+        <div class="main-menu">
+            <div id="channel-list" class="part1">
+                <h1>Available Channels</h1>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Channels</th>
+                        <th>Users</th>
+                        <th>Scripts</th>
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach:availableMessengers">
+                    <tr>
+                        <td>
+                            <!--<select data-bind="options:availableChannels, optionsText:'channel',optionsValue:'key'" title="availableChannels">-->
+                            <!--</select>-->
+                            <select>
+                                <option value="douban" selected>Douban</option>
+                                <option value="qq">QQ</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select>
+                                <option value="aaron@example.com" selected>aaron@example.com</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select>
+                                <option value="default" selected>default</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button id="add_robot">创建</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="part2">
+                    <h1>Live Sessions</h1>
+                    <ul id="robots-session">
+                        <li>
+                            <p>
+                                Aaron@example.com - Alice@example.com
+                                <span style="color:red">3</span>
+                            </p>
+                        </li>
+                        <li>
+                            <p>Aaron@example.com - Bob@example.com</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--main-menu-->
+        <div id="mini-box"></div>
+    </div>
+    <!--div-fix-left"-->
+</div>
+<!--div-content-->
+<div id="sysmonitor" style="width:400px;height:400px;border:1px solid silver; margin-top: 50px;">
+    <p>2017-09-22 18:00:00 启动Douban Messenger Aaron@example.com</p>
+</div>
+<div class="footer"></div>
+<script>
+    var MessengersViewModel = function () {
+        var self = this;
+
+        self.AvailableChannels = [{
+            "channel": "douban",
+            key: 0
+        }, {
+            "channel": "QQ",
+            key: 1
+        }];
+
+        self.UserToChannels = [{
+            name: "arron",
+            id: "aaron@"
+        }]
+    };
+    var availableMessengers = [{
+        "channel": "douban",
+        "users": [{
+            "name": "aaron",
+            "id": "aaron@example.com"
+        }],
+        "scripts": ['default']
+    }, {
+        "channel": "QQ",
+        "users": [{
+            "name": "aaron",
+            "id": "1234567"
+        }],
+        "scripts": []
+    }];
+    $(document).ready(function () {
+        console.log("11111111");
+        var currentViewModel = new MessengersViewModel();
+        ko.applyBindings(currentViewModel);
+        console.log("2222222222222222");
+    });
+</script>
+</body>
+</html>
